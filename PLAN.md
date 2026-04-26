@@ -10,7 +10,7 @@ Development moves one approved stage at a time. At the end of each stage, Codex 
 
 Every stage should leave behind a rollback point in Git. A stage may contain several small commits when that makes review safer, but the stage is not considered complete until the checks and stage summary are recorded here.
 
-Current stage: `Stage 0: Git, Safety, Project Baseline`.
+Current stage: `Stage 1: Core Logic Kernel`.
 
 ## Purpose / Big Picture
 
@@ -32,7 +32,8 @@ The first visible success is not "the architecture exists." The first visible su
 - [x] (2026-04-24 01:47 +05:00) Added Unity-side map serialization helpers, editor map state, object catalog support, placed-object creation helpers, and HTTP clients for auth/catalog calls.
 - [x] (2026-04-24 01:52 +05:00) Added offline Node tests for backend domain rules; verified 6 passing tests with `node --test services/api/tests/domain.test.js`.
 - [x] (2026-04-24 02:03 +05:00) Added a first visible Unity editor sandbox path: runtime scene bootstrap, editable 3D ground/grid, placement controls, primitive factory, and a quick-start scene guide.
-- [ ] (2026-04-26) Stage 0: initialize local Git history, add a safe `.gitignore`, create a baseline commit, create the `codex/stage-1-logic-core` branch, and connect GitHub remote if credentials/tools are available.
+- [x] (2026-04-26) Stage 0: initialized local Git history, added a safe `.gitignore`, created baseline commit `00ff290`, renamed the primary branch to `main`, and created `codex/stage-1-logic-core`.
+- [ ] (2026-04-26) Stage 0 remote follow-up: create the GitHub repository and add `origin` once GitHub credentials or tooling are available.
 - [ ] Build the real Unity project shell with scenes, prefabs, login UI, home/catalog shell, and editor scene navigation inside the Unity Editor.
 - [ ] Replace the static editor/runtime code skeleton with actual interactive 3D scenes, object prefabs, and in-editor manipulation.
 - [ ] Validate and choose the long-term backend runtime: keep Node for MVP momentum or migrate the same route contract to ASP.NET Core once `.NET 8` is available locally.
@@ -68,6 +69,9 @@ The first visible success is not "the architecture exists." The first visible su
 
 - Observation: GitHub CLI is not available in the current shell, so automatic GitHub repository creation may be blocked from this environment.
   Evidence: `gh --version` failed because `gh` is not recognized as a command.
+
+- Observation: Stage 0 can complete locally, but the GitHub remote cannot be created from the current shell.
+  Evidence: Local commit `00ff290` exists and branch `codex/stage-1-logic-core` was created; no `gh` command is available to create or authenticate a GitHub repository.
 
 ## Decision Log
 
@@ -114,6 +118,8 @@ The first visible success is not "the architecture exists." The first visible su
 ## Outcomes & Retrospective
 
 The repository is no longer only a plan. It now contains a real product skeleton: shared map and logic contracts, Unity-oriented C# source files for editor and runtime layers, a local backend API skeleton, a static website marketplace shell, and project runbooks. The main remaining gap is that the current machine session could not run Unity or `.NET`, and it refused local socket listening for the Node verification step. That means the next contributor should focus first on opening the real Unity project, validating the backend in a normal local environment, and replacing code skeletons with true interactive scenes and live data flows.
+
+Stage 0 local safety is now in place. The project has a local Git repository, baseline commit `00ff290`, primary branch `main`, and working branch `codex/stage-1-logic-core`. GitHub remote setup remains open because no GitHub CLI or authenticated remote-creation path is available in the current shell.
 
 ## Context and Orientation
 
