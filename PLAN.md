@@ -10,7 +10,7 @@ Development moves one approved stage at a time. At the end of each stage, Codex 
 
 Every stage should leave behind a rollback point in Git. A stage may contain several small commits when that makes review safer, but the stage is not considered complete until the checks and stage summary are recorded here.
 
-Current stage: `Stage 1: Core Logic Kernel`.
+Current stage: `Stage 1: Core Logic Kernel` awaiting user review.
 
 ## Purpose / Big Picture
 
@@ -34,6 +34,9 @@ The first visible success is not "the architecture exists." The first visible su
 - [x] (2026-04-24 02:03 +05:00) Added a first visible Unity editor sandbox path: runtime scene bootstrap, editable 3D ground/grid, placement controls, primitive factory, and a quick-start scene guide.
 - [x] (2026-04-26) Stage 0: initialized local Git history, added a safe `.gitignore`, created baseline commit `00ff290`, renamed the primary branch to `main`, and created `codex/stage-1-logic-core`.
 - [ ] (2026-04-26) Stage 0 remote follow-up: create the GitHub repository and add `origin` once GitHub credentials or tooling are available.
+- [x] (2026-04-26) Stage 1: added flow nodes, graph validation, missing-reference detection, cycle detection, deterministic condition/action execution, and a Node mirror of the core logic for tests.
+- [x] (2026-04-26) Stage 1 validation: `node --test services/api/tests/domain.test.js services/api/tests/logic-core.test.js` passed 13/13 tests.
+- [ ] Stage 1 user review: confirm the JSON logic examples and core block model are acceptable before Stage 2 UI work begins.
 - [ ] Build the real Unity project shell with scenes, prefabs, login UI, home/catalog shell, and editor scene navigation inside the Unity Editor.
 - [ ] Replace the static editor/runtime code skeleton with actual interactive 3D scenes, object prefabs, and in-editor manipulation.
 - [ ] Validate and choose the long-term backend runtime: keep Node for MVP momentum or migrate the same route contract to ASP.NET Core once `.NET 8` is available locally.
@@ -72,6 +75,9 @@ The first visible success is not "the architecture exists." The first visible su
 
 - Observation: Stage 0 can complete locally, but the GitHub remote cannot be created from the current shell.
   Evidence: Local commit `00ff290` exists and branch `codex/stage-1-logic-core` was created; no `gh` command is available to create or authenticate a GitHub repository.
+
+- Observation: Stage 1 logic can be verified without Unity by using a Node mirror of the same graph semantics.
+  Evidence: `logic-core.test.js` covers validation, trap damage, finish win flow, door state, inventory condition, cycles, missing references, and deterministic chance; all tests passed.
 
 ## Decision Log
 
@@ -115,11 +121,17 @@ The first visible success is not "the architecture exists." The first visible su
   Rationale: The project is already large enough that continuing without Git history would make rollback and review unreliable.
   Date/Author: 2026-04-26 / Codex
 
+- Decision: Add a Node mirror of the Easy logic kernel for Stage 1 verification.
+  Rationale: Unity and `.NET` are not reliably available in the current shell, but the graph semantics still need executable tests before UI work starts.
+  Date/Author: 2026-04-26 / Codex
+
 ## Outcomes & Retrospective
 
 The repository is no longer only a plan. It now contains a real product skeleton: shared map and logic contracts, Unity-oriented C# source files for editor and runtime layers, a local backend API skeleton, a static website marketplace shell, and project runbooks. The main remaining gap is that the current machine session could not run Unity or `.NET`, and it refused local socket listening for the Node verification step. That means the next contributor should focus first on opening the real Unity project, validating the backend in a normal local environment, and replacing code skeletons with true interactive scenes and live data flows.
 
 Stage 0 local safety is now in place. The project has a local Git repository, baseline commit `00ff290`, primary branch `main`, and working branch `codex/stage-1-logic-core`. GitHub remote setup remains open because no GitHub CLI or authenticated remote-creation path is available in the current shell.
+
+Stage 1 core logic is implemented and tested at the data/semantics level. The Unity-facing C# layer now includes flow nodes, validation result and validator classes, deterministic conditions, expanded actions, and interpreter loop protection. The Node mirror exists only to make Stage 1 testable in this environment and should remain aligned with the C# model until Unity EditMode tests are available.
 
 ## Context and Orientation
 

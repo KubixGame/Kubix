@@ -6,6 +6,7 @@ namespace Kubix.Logic;
 
 public sealed class EasyLogicInterpreter
 {
+    private const int MaxTraversalSteps = 256;
     private readonly ConditionEvaluator _conditionEvaluator;
     private readonly ActionExecutor _actionExecutor;
 
@@ -31,12 +32,17 @@ public sealed class EasyLogicInterpreter
                 continue;
             }
 
-            TraverseFromNode(node.NodeId, graph, nodesById, runtimeState);
+            TraverseFromNode(node.NodeId, graph, nodesById, runtimeState, 0);
         }
     }
 
-    private void TraverseFromNode(string nodeId, EasyLogicGraph graph, Dictionary<string, EasyNode> nodesById, Dictionary<string, string> runtimeState)
+    private void TraverseFromNode(string nodeId, EasyLogicGraph graph, Dictionary<string, EasyNode> nodesById, Dictionary<string, string> runtimeState, int stepCount)
     {
+        if (stepCount > MaxTraversalSteps)
+        {
+            return;
+        }
+
         var outgoing = graph.Edges.Where(edge => edge.FromNodeId == nodeId);
         foreach (var edge in outgoing)
         {
@@ -50,12 +56,18 @@ public sealed class EasyLogicInterpreter
                 case EasyConditionNode conditionNode:
                     if (_conditionEvaluator.Evaluate(conditionNode.ConditionType, conditionNode.Parameters, runtimeState))
                     {
-                        TraverseFromNode(conditionNode.NodeId, graph, nodesById, runtimeState);
+                        TraverseFromNode(conditionNode.NodeId, graph, nodesById, runtimeState, stepCount + 1);
                     }
                     break;
                 case EasyActionNode actionNode:
                     _actionExecutor.Execute(actionNode.ActionType, actionNode.Parameters, runtimeState);
-                    TraverseFromNode(actionNode.NodeId, graph, nodesById, runtimeState);
+                    TraverseFromNode(actionNode.NodeId, graph, nodesById, runtimeState, stepCount + 1);
+                    break;
+                case EasyFlowNode flowNode:
+                    if (flowNode.FlowType == "and" || flowNode.FlowType == "wait")
+                    {
+                        TraverseFromNode(flowNode.NodeId, graph, nodesById, runtimeState, stepCount + 1);
+                    }
                     break;
             }
         }
