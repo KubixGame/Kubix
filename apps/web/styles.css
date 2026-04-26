@@ -1,0 +1,225 @@
+:root {
+  --bg: #eef3ff;
+  --panel: rgba(255, 255, 255, 0.78);
+  --panel-strong: #ffffff;
+  --text: #14213d;
+  --muted: #5c6784;
+  --primary: #0f62fe;
+  --primary-strong: #0043ce;
+  --line: rgba(20, 33, 61, 0.08);
+  --shadow: 0 24px 60px rgba(31, 51, 91, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(91, 141, 239, 0.25), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(15, 98, 254, 0.15), transparent 40%),
+    var(--bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(14px);
+  background: rgba(238, 243, 255, 0.8);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.topnav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.page,
+.download-page,
+.auth-page {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 24px 0 60px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.hero-card,
+.download-card,
+.auth-card,
+.game-detail,
+.game-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.hero h1,
+.section h1 {
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.05;
+  margin: 6px 0 16px;
+}
+
+.hero-copy,
+.download-card p,
+.game-card p,
+.game-detail p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.hero-card,
+.download-card,
+.auth-card,
+.game-detail {
+  padding: 28px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.button,
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 700;
+}
+
+.button.primary,
+.cta {
+  background: var(--primary);
+  color: #fff;
+}
+
+.button.primary:hover,
+.cta:hover {
+  background: var(--primary-strong);
+}
+
+.button.secondary {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.section {
+  margin-top: 42px;
+}
+
+.section-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.game-card {
+  overflow: hidden;
+}
+
+.thumb {
+  height: 160px;
+  background: linear-gradient(135deg, #0f62fe, #84a9ff);
+}
+
+.game-card-body {
+  padding: 18px;
+}
+
+.status {
+  min-height: 24px;
+  color: var(--primary-strong);
+}
+
+.search,
+.auth-card input {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.auth-page,
+.download-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.auth-card {
+  width: min(460px, 100%);
+}
+
+.auth-card form,
+.auth-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.auth-card label {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}

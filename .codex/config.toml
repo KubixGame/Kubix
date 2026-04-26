@@ -1,0 +1,15 @@
+[mcp_servers.unity_mcp]
+command = "powershell.exe"
+args = [
+  "-NoProfile",
+  "-ExecutionPolicy",
+  "Bypass",
+  "-File",
+  "tools/install-unity-mcp-advanced.ps1",
+  "-RunServer",
+]
+cwd = "."
+env_vars = ["UNITY_MCP_PORT", "UNITY_MCP_BASE_URL"]
+startup_timeout_sec = 300
+tool_timeout_sec = 180
+enabled = true

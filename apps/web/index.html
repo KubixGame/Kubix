@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kubix</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Kubix</div>
+      <nav class="topnav">
+        <a href="./index.html">Главная</a>
+        <a href="./games.html">Игры</a>
+        <a href="./login.html">Войти</a>
+        <a class="cta" href="./download.html">Открыть приложение</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">3D-платформа для создания игр</p>
+          <h1>Дети создают свои 3D-карты, публикуют их и играют друг у друга</h1>
+          <p class="hero-copy">
+            Kubix — это детская платформа в духе Roblox, но с более простым порогом входа.
+            Ребёнок может собрать карту мышкой, добавить лёгкую игровую логику и сразу запустить playtest.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="./download.html">Скачать Kubix</a>
+            <a class="button secondary" href="./games.html">Смотреть каталог</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h2>Что должно быть в MVP</h2>
+          <ul>
+            <li>3D-редактор с drag-and-drop размещением объектов</li>
+            <li>Лёгкий редактор логики: When / If / Then / Wait</li>
+            <li>Локальный playtest</li>
+            <li>Публикация карт в каталог</li>
+            <li>Запуск чужих игр из desktop-приложения</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Рекомендуемое</h2>
+          <a href="./games.html">Смотреть всё</a>
+        </div>
+        <div id="featured-games" class="card-grid"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./scripts/index.js"></script>
+  </body>
+  </html>

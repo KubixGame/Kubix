@@ -1,0 +1,109 @@
+{
+  "mapId": "map_first_obby",
+  "title": "My First Obby",
+  "objects": [
+    {
+      "objectId": "floor_01",
+      "objectType": "floor_block",
+      "transform": {
+        "position": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "scale": { "x": 20, "y": 1, "z": 20 }
+      },
+      "properties": {
+        "color": "#7f9cf5"
+      }
+    },
+    {
+      "objectId": "spawn_01",
+      "objectType": "spawn_point",
+      "transform": {
+        "position": { "x": -6, "y": 1, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "scale": { "x": 1, "y": 1, "z": 1 }
+      },
+      "properties": {}
+    },
+    {
+      "objectId": "trap_01",
+      "objectType": "damage_zone",
+      "transform": {
+        "position": { "x": 0, "y": 1, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "scale": { "x": 3, "y": 1, "z": 3 }
+      },
+      "properties": {
+        "damage": "25"
+      }
+    },
+    {
+      "objectId": "finish_01",
+      "objectType": "finish_zone",
+      "transform": {
+        "position": { "x": 7, "y": 1, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "scale": { "x": 2, "y": 2, "z": 2 }
+      },
+      "properties": {}
+    }
+  ],
+  "logic": {
+    "nodes": [
+      {
+        "nodeId": "event_trap_touch",
+        "nodeType": "event",
+        "eventType": "player_touched_zone",
+        "parameters": {
+          "targetObjectId": "trap_01"
+        }
+      },
+      {
+        "nodeId": "action_damage_player",
+        "nodeType": "action",
+        "actionType": "damage_player",
+        "parameters": {
+          "amount": "25"
+        }
+      },
+      {
+        "nodeId": "event_finish_touch",
+        "nodeType": "event",
+        "eventType": "player_touched_zone",
+        "parameters": {
+          "targetObjectId": "finish_01"
+        }
+      },
+      {
+        "nodeId": "action_show_win_message",
+        "nodeType": "action",
+        "actionType": "show_message",
+        "parameters": {
+          "text": "You win!"
+        }
+      },
+      {
+        "nodeId": "action_end_match",
+        "nodeType": "action",
+        "actionType": "end_game",
+        "parameters": {}
+      }
+    ],
+    "edges": [
+      {
+        "fromNodeId": "event_trap_touch",
+        "toNodeId": "action_damage_player",
+        "edgeType": "then"
+      },
+      {
+        "fromNodeId": "event_finish_touch",
+        "toNodeId": "action_show_win_message",
+        "edgeType": "then"
+      },
+      {
+        "fromNodeId": "action_show_win_message",
+        "toNodeId": "action_end_match",
+        "edgeType": "then"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Регистрация | Kubix</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="auth-page">
+      <form class="auth-card" id="register-form">
+        <h1>Создать аккаунт Kubix</h1>
+        <label>Имя пользователя <input name="username" required /></label>
+        <label>Отображаемое имя <input name="displayName" required /></label>
+        <label>Пароль <input name="password" type="password" required /></label>
+        <button class="button primary" type="submit">Зарегистрироваться</button>
+        <p id="register-status" class="status"></p>
+        <p>Уже есть аккаунт? <a href="./login.html">Войти</a></p>
+      </form>
+    </main>
+    <script type="module" src="./scripts/register.js"></script>
+  </body>
+  </html>

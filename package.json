@@ -1,0 +1,14 @@
+{
+  "name": "kubix",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "services/api"
+  ],
+  "scripts": {
+    "api:start": "node services/api/src/server.js",
+    "api:reset": "node services/api/src/reset-store.js",
+    "api:test": "node --test services/api/tests/*.test.js",
+    "web:start": "node apps/web/dev-server.js"
+  }
+}

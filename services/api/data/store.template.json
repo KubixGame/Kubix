@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "userId": "user_demo_author",
+      "username": "kidbuilder",
+      "displayName": "Kid Builder",
+      "password": "demo123"
+    },
+    {
+      "userId": "user_demo_player",
+      "username": "playtester",
+      "displayName": "Play Tester",
+      "password": "demo123"
+    }
+  ],
+  "tokens": {
+    "token-demo-author": "user_demo_author",
+    "token-demo-player": "user_demo_player"
+  },
+  "games": [
+    {
+      "gameId": "game_first_obby",
+      "title": "My First Obby",
+      "description": "A simple obstacle course with a trap zone and a finish.",
+      "authorId": "user_demo_author",
+      "authorName": "Kid Builder",
+      "thumbnailUrl": "/media/game_first_obby.png",
+      "genre": "Obby",
+      "visibility": "public",
+      "currentVersionId": "version_001",
+      "map": {
+        "mapId": "map_first_obby",
+        "title": "My First Obby",
+        "objects": [],
+        "logic": {
+          "nodes": [],
+          "edges": []
+        }
+      }
+    }
+  ],
+  "rooms": []
+}
